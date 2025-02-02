@@ -1,57 +1,47 @@
 import React, { useState } from 'react';
+import './AddTaskForm.css'
+import sendRequest from '../../utils/SendRequest';
 
 const AddTaskForm = () => {
     // State to manage form fields
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
-    const [status, setStatus] = useState('Pending');
+    const [status, setStatus] = useState('To Do');
     const [priority, setPriority] = useState('Low');
     const [message, setMessage] = useState('');
 
     // Enum-like values for status and priority
-    const statusOptions = ['Pending', 'In Progress', 'Completed'];
+    const statusOptions = ['To Do', 'In Progress', 'Completed'];
     const priorityOptions = ['Low', 'Medium', 'High'];
 
-    // Handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const addTaskAPI = async () => {
+        console.log("Inside addTaskAPI");
 
-        // Prepare the task data
-        const taskData = {
-            title,
-            description,
-            due_date: dueDate,
-            status,
-            priority,
-        };
+        const requestData = {
+            "title": title,
+            "description": description,
+            "due_date": dueDate,
+            "status": status,
+            "priority": priority,
+            "user_id": "e1fa0294-4976-4e0f-89c9-be78a12ed701"
+        }
+        console.log("addTaskAPI requestData: ", requestData);
 
         try {
-            // Sending a POST request to the backend API
-            const response = await fetch('/tasks', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(taskData),
-            });
+            const response = await sendRequest("/tasks", requestData, "POST", {});
 
-            // Check if request was successful
-            if (response.ok) {
-                setMessage('Task added successfully!');
-            } else {
-                setMessage('Failed to add task!');
-            }
+            console.log("addTaskAPI response: ", response);
         } catch (error) {
-            console.error('Error:', error);
-            setMessage('An error occurred!');
+            console.log("addTaskAPI error: ", addTaskAPI);
         }
-    };
+    }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div className="form-container">
+            <h2>Add New Task</h2>
+            <form onSubmit={() => addTaskAPI()} className="task-form">
+                <div className="form-group">
                     <label htmlFor="title">Task Title</label>
                     <input
                         type="text"
@@ -61,7 +51,8 @@ const AddTaskForm = () => {
                         required
                     />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="description">Description</label>
                     <textarea
                         id="description"
@@ -70,7 +61,8 @@ const AddTaskForm = () => {
                         required
                     />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="due_date">Due Date</label>
                     <input
                         type="date"
@@ -80,7 +72,8 @@ const AddTaskForm = () => {
                         required
                     />
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="status">Status</label>
                     <select
                         id="status"
@@ -88,14 +81,15 @@ const AddTaskForm = () => {
                         onChange={(e) => setStatus(e.target.value)}
                         required
                     >
-                        {statusOptions.map((statusOption) => (
-                            <option key={statusOption} value={statusOption}>
-                                {statusOption}
+                        {statusOptions.map((option) => (
+                            <option key={option} value={option}>
+                                {option}
                             </option>
                         ))}
                     </select>
                 </div>
-                <div>
+
+                <div className="form-group">
                     <label htmlFor="priority">Priority</label>
                     <select
                         id="priority"
@@ -103,18 +97,16 @@ const AddTaskForm = () => {
                         onChange={(e) => setPriority(e.target.value)}
                         required
                     >
-                        {priorityOptions.map((priorityOption) => (
-                            <option key={priorityOption} value={priorityOption}>
-                                {priorityOption}
+                        {priorityOptions.map((option) => (
+                            <option key={option} value={option}>
+                                {option}
                             </option>
                         ))}
                     </select>
                 </div>
-                <button type="submit">Add Task</button>
-            </form>
 
-            {/* Display success or error message */}
-            {message && <p>{message}</p>}
+                <button type="submit" className="submit-button">Add Task</button>
+            </form>
         </div>
     );
 };
