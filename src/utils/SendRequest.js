@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const sendRequest = (path, data, method = 'POST', headers = {}) => {
+    path = "http://localhost:8080" + path;
     switch (method) {
         case 'POST':
             return axios.post(path, data, { headers });

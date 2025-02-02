@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import './Tasks.css'
+import AddTaskModal from '../../components/AddTaskModal/AddTaskModal'
 import '../../sections/sectionStyles.css'
-import AddTaskForm from '../../components/AddTaskForm/AddTaskForm'
 import sendRequest from '../../utils/SendRequest'
 import DisplayTasksTable from './DisplayTasksTable'
+import './Tasks.css'
 
 export default function Tasks() {
+    const [allTasks, setAllTasks] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+
     const handleSubmit = () => {
         alert("New Task Added.")
     }
 
-    const [allTasks, setAllTasks] = useState([]);
-
     const getAllTasksAPI = async () => {
         try {
-            const response = await sendRequest("http://localhost:8080/tasks", {}, "GET", {})
+            const response = await sendRequest("/tasks", {}, "GET", {})
             setAllTasks(response.data)
         } catch (error) {
             console.log("error: ", error);
@@ -24,7 +25,7 @@ export default function Tasks() {
     const deleteTaskAPI = async (task_id) => {
         console.log("Inside deleteTaskAPI: ", task_id);
         try {
-            const response = await sendRequest(`http://localhost:8080/tasks/${task_id}`, {}, "DELETE", {})
+            const response = await sendRequest(`/tasks/${task_id}`, {}, "DELETE", {})
             console.log("deleteTaskAPI response: ", response);
 
             response.status == "200" ? getAllTasksAPI() : alert("Error deleting the task!")
@@ -43,15 +44,18 @@ export default function Tasks() {
         <>
             <div className='tasks_top_section'>
                 <div className='section_headings'>Tasks</div>
-                <button id='add_new_task_button' onClick={handleSubmit}>Add new</button>
+                {/* <button id='add_new_task_button' onClick={handleSubmit}>Add new</button> */}
+                <button id='add_new_task_button' onClick={() => setIsOpen(true)} className="open-modal-btn">
+                    Open Modal
+                </button>
             </div>
-            {/* <AddTaskForm /> */}
+            <AddTaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
             {
-                (allTasks.length !== 0) ? 
-                <DisplayTasksTable allTasks={allTasks} deleteTask={deleteTaskAPI} /> : 
-                <div style={{ textAlign: "center", margin: "20px 0" }}>
-                    You're all set!
-                </div>
+                (allTasks.length !== 0) ?
+                    <DisplayTasksTable allTasks={allTasks} deleteTask={deleteTaskAPI} /> :
+                    <div style={{ textAlign: "center", margin: "20px 0" }}>
+                        You're all set!
+                    </div>
             }
         </>
     )
