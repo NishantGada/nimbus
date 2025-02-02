@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Sidebar/Sidebar.css";
+import "./Sidebar.css";
 
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -17,6 +17,7 @@ export default function Sidebar() {
         <NavItem icon="🏠" label="Home" path="/" isExpanded={isExpanded} />
         <NavItem icon="👤" label="Profile" path="/profile" isExpanded={isExpanded} />
         <NavItem icon="⚙️" label="Settings" path="/settings" isExpanded={isExpanded} />
+        <NavItem icon="//" label="Tasks" path="/tasks" isExpanded={isExpanded} />
       </nav>
     </div>
   );
