@@ -16,19 +16,18 @@ const AddTaskForm = () => {
     const priorityOptions = ['Low', 'Medium', 'High'];
 
     const addTaskAPI = async () => {
-        console.log("Inside addTaskAPI");
-
-        const requestData = {
-            "title": title,
-            "description": description,
-            "due_date": dueDate,
-            "status": status,
-            "priority": priority,
-            "user_id": "e1fa0294-4976-4e0f-89c9-be78a12ed701"
-        }
-        console.log("addTaskAPI requestData: ", requestData);
-
+        console.log("Inside addTaskAPI");        
         try {
+            const requestData = {
+                "title": title,
+                "description": description,
+                "due_date": dueDate,
+                "status": status,
+                "priority": priority,
+                // "user_id": "e1fa0294-4976-4e0f-89c9-be78a12ed701"
+                "user_email": "test2@gmail.com"
+            }
+            console.log("addTaskAPI requestData: ", requestData);
             const response = await sendRequest("/tasks", requestData, "POST", {});
 
             console.log("addTaskAPI response: ", response);
@@ -39,7 +38,7 @@ const AddTaskForm = () => {
 
     return (
         <div className="form-container">
-            <h2>Add New Task</h2>
+            {/* <h2>Add New Task</h2> */}
             <form onSubmit={() => addTaskAPI()} className="task-form">
                 <div className="form-group">
                     <label htmlFor="title">Task Title</label>
@@ -53,7 +52,7 @@ const AddTaskForm = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="description">Task Description</label>
                     <textarea
                         id="description"
                         value={description}
