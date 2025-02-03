@@ -5,12 +5,6 @@ import AddTaskForm from "../AddTaskForm/AddTaskForm";
 const AddTaskModal = ({ isOpen, setIsOpen }) => {
     return (
         <>
-            {/* Button to open modal */}
-            {/* <button onClick={() => setIsOpen(true)} className="open-modal-btn">
-                Open Modal
-            </button> */}
-
-            {/* Modal + Overlay */}
             {isOpen && (
                 <div className="modal-overlay">
                     <div className="modal">
