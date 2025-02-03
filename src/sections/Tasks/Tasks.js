@@ -38,15 +38,12 @@ export default function Tasks() {
         getAllTasksAPI();
     }, [])
 
-    console.log("allTasks: ", allTasks);
-
     return (
         <>
             <div className='tasks_top_section'>
                 <div className='section_headings'>Tasks</div>
-                {/* <button id='add_new_task_button' onClick={handleSubmit}>Add new</button> */}
                 <button id='add_new_task_button' onClick={() => setIsOpen(true)} className="open-modal-btn">
-                    Open Modal
+                    Add New Task
                 </button>
             </div>
             <AddTaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
