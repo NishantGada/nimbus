@@ -1,0 +1,48 @@
+.notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+    margin: 20px 0;
+}
+
+.note-card {
+    background: rgb(240, 240, 240);
+    border-radius: 12px;
+    padding: 16px;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.note-card:hover {
+    transform: scale(1.02);
+}
+
+.note-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.note-description {
+    font-size: 14px;
+    color: #444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #666;
+}
+
+.empty-text {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+}
