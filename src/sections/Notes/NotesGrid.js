@@ -13,7 +13,7 @@ const NotesGrid = ({ notes, deleteNoteAPI }) => {
                 notes.map((note) => (
                     <div
                         className="note-card"
-                        key={note.id}
+                        key={note.note_id}
                     >
                         <div className="note-card-header">
                             <h3 className="note-title">{note.title}</h3>

@@ -42,8 +42,6 @@ export default function Notes() {
         getAllNotesAPI();
     }, [])
 
-    console.log("allNotes: ", allNotes);
-
     return (
         <>
             <div className='section_headings'>Notes</div>
