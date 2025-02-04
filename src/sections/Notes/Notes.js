@@ -4,6 +4,13 @@ import '../../sections/sectionStyles.css';
 import sendRequest from '../../utils/SendRequest';
 import NotesGrid from './NotesGrid';
 
+/*
+TODO:
+1. conditionally render notes based on user
+2. conditionally render notes based on category
+3. implement update note functionality
+*/
+
 export default function Notes() {
     const [allNotes, setAllNotes] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +22,19 @@ export default function Notes() {
             setAllNotes(response.data)
         } catch (error) {
             console.log("getAllNotesAPI error: ", error);
+        }
+    }
+
+    const deleteNoteAPI = async (note_id) => {
+        console.log("Inside deleteNoteAPI");
+
+        try {
+            console.log("deleteNoteAPI note_id: ", note_id);
+            const response = await sendRequest(`/notes/${note_id}`, {}, "DELETE", {});
+
+            response.status === "200" ? getAllNotesAPI() : alert("Error deleting the note!")
+        } catch (error) {
+            console.log("deleteNoteAPI error: ", error);
         }
     }
 
@@ -31,7 +51,7 @@ export default function Notes() {
                 Add New Note
             </button>
             <AddNoteModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <NotesGrid notes={allNotes} />
+            <NotesGrid notes={allNotes} deleteNoteAPI={deleteNoteAPI} />
         </>
     )
 }
