@@ -18,6 +18,7 @@ export default function Sidebar() {
         <NavItem icon="👤" label="Profile" path="/profile" isExpanded={isExpanded} />
         <NavItem icon="⚙️" label="Settings" path="/settings" isExpanded={isExpanded} />
         <NavItem icon="//" label="Tasks" path="/tasks" isExpanded={isExpanded} />
+        <NavItem icon="{}" label="Notes" path="/notes" isExpanded={isExpanded} />
       </nav>
     </div>
   );
