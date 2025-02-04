@@ -9,10 +9,6 @@ export default function Tasks() {
     const [allTasks, setAllTasks] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSubmit = () => {
-        alert("New Task Added.")
-    }
-
     const getAllTasksAPI = async () => {
         try {
             const response = await sendRequest("/tasks", {}, "GET", {})
@@ -28,7 +24,7 @@ export default function Tasks() {
             const response = await sendRequest(`/tasks/${task_id}`, {}, "DELETE", {})
             console.log("deleteTaskAPI response: ", response);
 
-            response.status == "200" ? getAllTasksAPI() : alert("Error deleting the task!")
+            response.status === "200" ? getAllTasksAPI() : alert("Error deleting the task!")
         } catch (error) {
             console.log("deleteTaskAPI error: ", error);
         }
