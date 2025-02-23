@@ -7,6 +7,8 @@ import Profile from './sections/Profile/Profile';
 import Settings from './sections/Settings/Settings';
 import Tasks from "./sections/Tasks/Tasks";
 import Notes from "./sections/Notes/Notes";
+import Links from "./sections/Links/Links";
+import ExpenseTracker from "./sections/ExpenseTracker/ExpenseTracker";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/notes" element={<Notes />} />
+            <Route path="/links" element={<Links />} />
+            <Route path="/expense-tracker" element={<ExpenseTracker />} />
           </Routes>
         </div>
       </div>
