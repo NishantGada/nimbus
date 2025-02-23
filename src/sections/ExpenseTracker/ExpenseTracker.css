@@ -1,0 +1,19 @@
+.budget-container {
+    display: flex;
+    align-items: center;
+}
+
+.budget-container div {
+    display: flex;
+    align-items: center;
+}
+
+.budget-container img {
+    width: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.budget-container input {
+    padding: 2px;
+}
