@@ -1,14 +1,14 @@
 import React from "react";
-import './AddNoteModal.css'
 import AddNoteForm from "../AddNoteForm/AddNoteForm";
+import './AddNoteModal.css';
 
-const AddNoteModal = ({ isOpen, setIsOpen }) => {
+const AddNoteModal = ({ isOpen, setIsOpen, addNewNoteAPI, noteCategories }) => {
     return (
         <>
             {isOpen && (
                 <div className="modal-overlay">
                     <div className="modal">
-                        <AddNoteForm />
+                        <AddNoteForm addNewNoteAPI={addNewNoteAPI} noteCategories={noteCategories} />
                         <div>
                             <button onClick={() => setIsOpen(false)} className="close-modal-btn">
                                 Close

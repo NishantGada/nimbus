@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import "./AddNoteForm.css"; // Import CSS file
+import "./AddNoteForm.css";
 
-const AddNoteForm = ({ onSubmit }) => {
+const AddNoteForm = ({ addNewNoteAPI, noteCategories }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [userEmail, setUserEmail] = useState("");
+    const [userEmail, setUserEmail] = useState("test2@gmail.com");
     const [category, setCategory] = useState("Personal");
-
-    const categoryOptions = ["Personal", "Work", "Business", "Other"];
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ title, description, userEmail, category });
+        addNewNoteAPI({ title, description, userEmail, category });
     };
 
     return (
@@ -47,9 +45,9 @@ const AddNoteForm = ({ onSubmit }) => {
                         onChange={(e) => setCategory(e.target.value)}
                         required
                     >
-                        {categoryOptions.map((option) => (
-                            <option key={option} value={option}>
-                                {option}
+                        {noteCategories.map((category) => (
+                            <option key={category.category_id} value={category.category_name}>
+                                {category.category_name}
                             </option>
                         ))}
                     </select>

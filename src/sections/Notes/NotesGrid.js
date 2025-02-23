@@ -4,7 +4,7 @@ import "./NotesGrid.css";
 import dustbinIcon from "./images/dustbin.png";
 import editIcon from "./images/edit.png";
 
-const NotesGrid = ({ notes, deleteNoteAPI }) => {
+const NotesGrid = ({ notes, updateNoteAPI, deleteNoteAPI, noteCategories }) => {
     const [selectedNote, setSelectedNote] = useState(null);
 
     return (
@@ -24,7 +24,7 @@ const NotesGrid = ({ notes, deleteNoteAPI }) => {
                         </div>
                         <p className="note-description">{note.description}</p>
                         <div className="note-footer">
-                            <span>{note.category}</span>
+                            <span>{noteCategories[note.category_id]}</span>
                             <span>{new Date(note.updated_at).toLocaleDateString()}</span>
                         </div>
                     </div>
@@ -37,6 +37,8 @@ const NotesGrid = ({ notes, deleteNoteAPI }) => {
                 <EditNoteModal
                     note={selectedNote}
                     onClose={() => setSelectedNote(null)}
+                    noteCategories={noteCategories}
+                    updateNoteAPI={updateNoteAPI}
                 />
             )}
         </div>
