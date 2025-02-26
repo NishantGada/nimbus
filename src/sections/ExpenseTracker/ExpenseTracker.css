@@ -1,19 +1,42 @@
-.budget-container {
+section {
+    background-color: white;
+    padding: 40px;
+}
+
+.expense-tracker-banner {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    button {
+        padding: 10px 20px;
+        background: white;
+        border: 1px solid black;
+        font-weight: bold;
+        cursor: pointer;
+    }
 }
 
-.budget-container div {
+.user-details-container {
     display: flex;
     align-items: center;
-}
 
-.budget-container img {
-    width: 20px;
-    margin-left: 10px;
-    cursor: pointer;
-}
+    p {
+        margin-right: 10px;
+    }
 
-.budget-container input {
-    padding: 2px;
+    div {
+        display: flex;
+        align-items: center;
+    }
+
+    img {
+        width: 20px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    input {
+        padding: 2px;
+    }
 }
